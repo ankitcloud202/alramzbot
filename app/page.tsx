@@ -13,8 +13,27 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import HeroImage from '@/public/hero-image.png'
+import useSWR from 'swr'
+import { generateClient } from 'aws-amplify/data';
+import { type Schema } from '@/amplify/data/resource';
+import { Amplify } from 'aws-amplify';
+import outputs from '../amplify_outputs.json';
+
+Amplify.configure(outputs);
+
+const client = generateClient<Schema>();
+
+const fetcher = async ()=>{
+  try{
+    const res = await client.models.Todo.list();
+    return res.data;
+  }catch(e){
+    console.error("Error fetching data:", e)
+  }
+}
 
 export default function Home() {
+  const {data, isLoading, error} = useSWR(`/api/Calls`, fetcher)
   const [phoneInputs, setPhoneInputs] = useState([{ id: 1, countryCode: "+971", phoneNumber: "" }])
 
   const addPhoneInput = () => {
@@ -39,6 +58,12 @@ export default function Home() {
     // Handle form submission logic here
   }
 
+  if(isLoading) return <div>Loading...</div>
+  if(error) return <div>Error fetching data</div>
+
+  if(data){
+    console.log("Data:", data);
+  }
   return (
     <>
 
