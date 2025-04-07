@@ -4,6 +4,9 @@ const schema = a.schema({
   Todo: a
     .model({
       content: a.string(),
+      details: a.json(),
+      sentimentScore: a.integer(),
+      sourceFile: a.string(),
     })
     .authorization((allow) => [allow.guest()]),
 });

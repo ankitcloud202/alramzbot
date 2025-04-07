@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Plus, X, Check, ArrowRight } from "lucide-react"
+import { Plus, X, Check, ArrowRight, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -18,6 +18,8 @@ import { generateClient } from 'aws-amplify/data';
 import { type Schema } from '@/amplify/data/resource';
 import { Amplify } from 'aws-amplify';
 import outputs from '../amplify_outputs.json';
+import axios from "axios"
+import toast from "react-hot-toast"
 
 Amplify.configure(outputs);
 
@@ -33,7 +35,7 @@ const fetcher = async ()=>{
 }
 
 export default function Home() {
-  const {data, isLoading, error} = useSWR(`/api/Calls`, fetcher)
+  const {data, error} = useSWR(`/api/Calls`, fetcher)
   const [phoneInputs, setPhoneInputs] = useState([{ id: 1, countryCode: "+971", phoneNumber: "" }])
 
   const addPhoneInput = () => {
@@ -51,14 +53,41 @@ export default function Home() {
     setPhoneInputs(phoneInputs.map((input) => (input.id === id ? { ...input, [field]: value } : input)))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const [submitting, setSubmitting] = useState(false);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true);
     console.log("Submitted data:", phoneInputs)
+
+    if(phoneInputs.some((input) => !input.phoneNumber)){
+      toast.error("Please fill in all phone numbers.")
+      setSubmitting(false);
+      return;
+    }
+
+    const formattedInputs = phoneInputs.map((input) => (
+      input.countryCode + input.phoneNumber.replace(/\D/g, '')
+    ))
+
+    console.log("Formatted Inputs:", formattedInputs);
+
+    try{
+      const res = await axios.post('/api/call', {
+        phoneNumbers: formattedInputs
+      });
+      
+      console.log("Response:", res)
+      toast.success("Call initialization started!");
+
+    }catch(e){
+      console.error("Error submitting data:", e)
+    }finally{
+      setSubmitting(false);
+    }
     // Handle form submission logic here
   }
 
-  if(isLoading) return <div>Loading...</div>
   if(error) return <div>Error fetching data</div>
 
   if(data){
@@ -209,8 +238,8 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <Button type="submit" className="w-full">
-                    Submit
+                  <Button type="submit" className="w-full" disabled={submitting}>
+                    {submitting ? <Loader2 className="animate-spin" /> : "Submit"}
                   </Button>
                 </form>
               </CardContent>
