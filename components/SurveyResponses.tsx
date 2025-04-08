@@ -5,9 +5,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge"
 import { Amplify } from 'aws-amplify';
 import outputs from '../amplify_outputs.json';
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { generateClient } from "aws-amplify/api";
 import { Schema } from "@/amplify/data/resource";
+import { ScrollArea } from "./ui/scroll-area";
+import { Button } from "./ui/button";
+import { RefreshCcw } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
@@ -88,6 +93,7 @@ export const fetcher = async ()=>{
 
 export function SurveyResponses() {
     const {data, error} = useSWR(`/api/Calls`, fetcher)
+    const [refreshing, setRefreshing] = useState(false);
   if(error) return <div>Error fetching data</div>
 
   if(data){
@@ -102,9 +108,23 @@ export function SurveyResponses() {
       return (sum / values.length).toFixed(1);
   }
 
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await mutate('/api/calls'); // Trigger a revalidation of the data
+
+    setTimeout(()=>{
+      setRefreshing(false);
+      toast.success("Data refreshed successfully!");
+    },2000);
+  }
+  
   return (
     <div className="space-y-4">
-    
+      <div className="flex justify-end">
+      <Button variant='default' className={`bg-blue-100 text-blue-600 hover:bg-blue-200`} onClick={handleRefresh}> <RefreshCcw className={`${refreshing && 'animate-spin'}`} />Sync Now</Button>
+      </div>
+    <ScrollArea className="h-[500px] w-full rounded-md border px-2">
       <Table>
         <TableHeader>
           <TableRow>
@@ -154,6 +174,7 @@ export function SurveyResponses() {
           })}
         </TableBody>
       </Table>
+    </ScrollArea>
     </div>
   )
 }

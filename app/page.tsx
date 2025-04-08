@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+// import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import HeroImage from '@/public/hero-image.png'
 import axios from "axios"
 import { FileUploader } from '@aws-amplify/ui-react-storage';
@@ -21,6 +21,7 @@ import { SurveyResponses } from "@/components/SurveyResponses"
 import { SurveyResponsesChart } from "@/components/SurveyResponseChart"
 import { SurveyResponsesLineChart } from "@/components/SurveyResponseChart2"
 import QuestionForm from "@/components/DefineSurvey"
+import QuestionFlow from "@/components/question-flow"
 
 
 export default function Home() {
@@ -68,7 +69,7 @@ export default function Home() {
       
       console.log("Response:", res)
       toast.success("Call initialization started!");
-
+      setPhoneInputs([{ id: 1, countryCode: "+966", phoneNumber: "" }]); // Reset the form
     }catch(e){
       console.error("Error submitting data:", e)
     }finally{
@@ -89,10 +90,10 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="inline-block px-3 py-1 rounded-full bg-gray-100 border text-sm font-medium">
-                Introducing Alramzbot
+                Introducing Al Ramzbot
               </div>
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-              AlRamzBot – AI Voice Assistant
+              Al RamzBot – AI Voice Assistant
               </h1>
               <p className="text-lg md:text-lg text-gray-600 max-w-lg">
               An intelligent AI voice bot designed to communicate effortlessly in Arabic, conduct automated voice surveys, and instantly capture responses with real-time sentiment analysis.
@@ -116,7 +117,7 @@ export default function Home() {
               <div className="relative bg-white p-2 rounded-xl shadow-lg">
                 <Image
                   src={HeroImage.src}
-                  alt="Alramzbot X Cloud202 Dashboard"
+                  alt="Al Ramzbot X Cloud202 Dashboard"
                   width={500}
                   height={500}
                   className="rounded-lg w-full"
@@ -290,19 +291,23 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-4s md:py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+      <section id="question-flow" className="py-4 md:py-10 bg-gray-50">
+        <div className="container mx-auto px-10 lg:px-28">
+          <div className="text-start max-w-3xl mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Question flow</h2>
-            <p className="text-lg text-gray-600">Section 2 : TODO.</p> 
+            <p className="text-lg text-gray-600">Visual representation of the survey question flow.</p>
+          </div>
+ 
+          <div className="mb-16">
+            <QuestionFlow />
           </div>
 
-          <div className="max-w-3xl mx-auto">
+          {/* <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger>How does Alramzbot X Cloud202 work?</AccordionTrigger>
+                <AccordionTrigger>How does Al Ramzbot X Cloud202 work?</AccordionTrigger>
                 <AccordionContent>
-                  Alramzbot X Cloud202 is a comprehensive cloud platform that combines advanced infrastructure, security
+                  Al Ramzbot X Cloud202 is a comprehensive cloud platform that combines advanced infrastructure, security
                   protocols, and user-friendly interfaces. It works by providing a distributed network of servers that
                   handle computing, storage, and networking resources, which you can access and manage through our
                   intuitive dashboard.
@@ -330,7 +335,7 @@ export default function Home() {
               <AccordionItem value="item-4">
                 <AccordionTrigger>How secure is the cloud storage?</AccordionTrigger>
                 <AccordionContent>
-                  Alramzbot X Cloud202 employs military-grade encryption (AES-256) for all data, both in transit and at
+                  Al Ramzbot X Cloud202 employs military-grade encryption (AES-256) for all data, both in transit and at
                   rest. We maintain compliance with major security standards including SOC 2, ISO 27001, and GDPR. Our
                   infrastructure includes multiple redundancies, regular security audits, and advanced threat detection
                   systems.
@@ -340,7 +345,7 @@ export default function Home() {
               <AccordionItem value="item-5">
                 <AccordionTrigger>Can I access my data from multiple devices?</AccordionTrigger>
                 <AccordionContent>
-                  Yes, Alramzbot X Cloud202 is designed for multi-device access. You can securely access your data from
+                  Yes, Al Ramzbot X Cloud202 is designed for multi-device access. You can securely access your data from
                   any device with an internet connection, including desktops, laptops, tablets, and smartphones. Our
                   responsive web interface and dedicated mobile apps ensure a consistent experience across all your
                   devices.
@@ -356,7 +361,7 @@ export default function Home() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-          </div>
+          </div> */}
         </div>
       </section> 
 
@@ -378,7 +383,7 @@ export default function Home() {
             {/* SURVEY RESPONSES Section */}
       <section id="survey-responses" className="py-4 md:py-10 bg-gray-50">
         <div className="container lg:px-28 px-10 mx-auto">
-          <div className="text-start max-w-3xl mb-16">
+          <div className="text-start max-w-3xl mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Survey responses</h2>
             <p className="text-lg text-gray-600">Responses of survey calls.</p> 
           </div>

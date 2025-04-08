@@ -33,7 +33,8 @@ export function SurveyResponsesLineChart() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   responses.forEach((res: any) => {
-    const month = getMonthNameFromTimestamp(res.timestamp)
+    // console.log("MONTH", new Date(res.createdAt).getMonth());
+    const month = getMonthNameFromTimestamp(new Date(res.createdAt).getMonth());
     if (!monthMap[month]) {
       monthMap[month] = {}
       questions.forEach((q) => {
