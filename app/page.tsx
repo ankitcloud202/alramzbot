@@ -20,6 +20,7 @@ import toast from "react-hot-toast"
 import { SurveyResponses } from "@/components/SurveyResponses"
 import { SurveyResponsesChart } from "@/components/SurveyResponseChart"
 import { SurveyResponsesLineChart } from "@/components/SurveyResponseChart2"
+import QuestionForm from "@/components/DefineSurvey"
 
 
 export default function Home() {
@@ -99,12 +100,15 @@ export default function Home() {
               <div className="flex flex-wrap gap-4">
                 <Link href="#start"> 
                 <Button size="lg" className="rounded-full">
-                  Initialize Call <ArrowRight className="ml-2 h-4 w-4" />
+                  Initialize Survey <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 </Link>
+
+                <Link href="#survey-responses">
                 <Button size="lg" variant="outline" className="rounded-full">
-                  Call logs
+                  Survey Responses
                 </Button>
+                </Link>
               </div>
             </div>
             <div className="relative">
@@ -257,6 +261,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Define Survey flow */}
+      <section id="start" className="py-12 bg-white" >
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-12 items-center w-full px-10 lg:px-20" >
+            <div className="col-span-1">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Define Survey flow</h2>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
+                    <Check className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <p className="font-medium">Upload your survey document.</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
+                    <Check className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <p className="font-medium">Or create your survey</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-2">
+            <QuestionForm/>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section id="faq" className="py-4s md:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -344,7 +376,7 @@ export default function Home() {
       </section>  
 
             {/* SURVEY RESPONSES Section */}
-      <section id="faq" className="py-4 md:py-10 bg-gray-50">
+      <section id="survey-responses" className="py-4 md:py-10 bg-gray-50">
         <div className="container lg:px-28 px-10 mx-auto">
           <div className="text-start max-w-3xl mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Survey responses</h2>

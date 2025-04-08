@@ -104,16 +104,18 @@ export function SurveyResponses() {
 
   return (
     <div className="space-y-4">
+    
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Date</TableHead>
+            <TableHead>Date - <span className="text-muted-foreground text-sm">dd/MM/yyyy</span></TableHead>
             <TableHead>Phone</TableHead>
             <TableHead className="text-center">Q1</TableHead>
             <TableHead className="text-center">Q2</TableHead>
             <TableHead className="text-center">Q3</TableHead>
             <TableHead className="text-center">Q4</TableHead>
             <TableHead className="text-center">Q5</TableHead>
+            <TableHead className="text-right">Sentiment Score</TableHead>
             <TableHead className="text-right">Avg</TableHead>
           </TableRow>
         </TableHeader>
@@ -125,7 +127,7 @@ export function SurveyResponses() {
             return (
               <TableRow key={response.id}>
                 <TableCell className="font-medium">
-                  {format(new Date((response?.timestamp ?? 0) * 1000), "MMM d, h:mm a")}
+                  {format(new Date(response.createdAt), "dd/MM/yyyy")}
                 </TableCell>
                 <TableCell>{response.customer_phone}</TableCell>
                 <TableCell className="text-center">{response.Attributes?.Question1}</TableCell>
@@ -133,8 +135,19 @@ export function SurveyResponses() {
                 <TableCell className="text-center">{response.Attributes?.Question3}</TableCell>
                 <TableCell className="text-center">{response.Attributes?.Question4}</TableCell>
                 <TableCell className="text-center">{response.Attributes?.Question5}</TableCell>
+                <TableCell className="text-right">{response.sentimentScore}</TableCell>
                 <TableCell className="text-right">
-                  <Badge variant={avgRating < 3 ? "destructive": (avgRating > 4 ? "default": "outline")}>{avgRating}</Badge>
+                <Badge variant={
+                    isNaN(avgRating)
+                        ? "outline"
+                        : avgRating < 3
+                        ? "destructive"
+                        : avgRating > 4
+                        ? "default"
+                        : "outline"
+                    }>
+                    {isNaN(avgRating) ? "N/A" : avgRating.toFixed(1)}
+                    </Badge>
                 </TableCell>
               </TableRow>
             )
