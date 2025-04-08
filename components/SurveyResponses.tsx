@@ -101,12 +101,19 @@ export function SurveyResponses() {
   }
   // Calculate average rating for each response
   const getAverageRating = (attributes: Record<string, string | null>) => {
-      const values = Object.values(attributes)
-        .filter((v): v is string => v !== null) // Filter out null values
-        .map((v) => Number.parseInt(v));
-      const sum = values.reduce((acc, val) => acc + val, 0);
-      return (sum / values.length).toFixed(1);
+    const values = Object.values(attributes)
+      .filter((v): v is string => v !== null) // Remove nulls
+      .map((v) => {
+        const parsed = parseInt(v)
+        return isNaN(parsed) ? 0 : parsed // Handle "timeout" or invalid numbers
+      });
+  
+    if (values.length === 0) return "0.0" // Or "N/A" depending on your use case
+  
+    const sum = values.reduce((acc, val) => acc + val, 0);
+    return (sum / values.length).toFixed(1);
   }
+  
 
 
   const handleRefresh = async () => {
@@ -155,7 +162,7 @@ export function SurveyResponses() {
                 <TableCell className="text-center">{response.Attributes?.Question3}</TableCell>
                 <TableCell className="text-center">{response.Attributes?.Question4}</TableCell>
                 <TableCell className="text-center">{response.Attributes?.Question5}</TableCell>
-                <TableCell className="text-right">{response.sentimentScore}</TableCell>
+                <TableCell className="text-right">{response?.sentimentScore}</TableCell>
                 <TableCell className="text-right">
                 <Badge variant={
                     isNaN(avgRating)

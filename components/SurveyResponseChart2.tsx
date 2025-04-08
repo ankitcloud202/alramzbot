@@ -15,10 +15,12 @@ import { fetcher } from "./SurveyResponses"
 
 const questions = ["Question1", "Question2", "Question3", "Question4", "Question5"]
 
-function getMonthNameFromTimestamp(timestamp: number) {
-  const date = new Date(timestamp * 1000) // Convert from seconds to ms
-  return date.toLocaleString("default", { month: "short" }) // 'Jan', 'Feb', etc.
-}
+// function getMonthNameFromTimestamp(timestamp: number) {
+//   const date = new Date(timestamp * 1000) // Convert from seconds to ms
+//   return date.toLocaleString("default", { month: "short" }) // 'Jan', 'Feb', etc.
+// }
+
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 export function SurveyResponsesLineChart() {
   const { data: responses, error } = useSWR(`/api/Calls`, fetcher)
@@ -33,8 +35,10 @@ export function SurveyResponsesLineChart() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   responses.forEach((res: any) => {
-    // console.log("MONTH", new Date(res.createdAt).getMonth());
-    const month = getMonthNameFromTimestamp(new Date(res.createdAt).getMonth());
+    console.log("MONTH", new Date(res.createdAt).getMonth());
+    const month = months[new Date(res.createdAt).getMonth()];
+    
+    console.log("MONTH", month);
     if (!monthMap[month]) {
       monthMap[month] = {}
       questions.forEach((q) => {
