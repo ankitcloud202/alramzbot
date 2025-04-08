@@ -220,7 +220,7 @@ export default function QuestionFlow() {
     {
       id: "1",
       type: "custom",
-      position: { x: 0, y: 100 },
+      position: { x: 0, y: 300 },
       data: {
         title: "Welcome",
         subtitle: "Entry Point",
@@ -232,7 +232,7 @@ export default function QuestionFlow() {
     {
       id: "2",
       type: "custom",
-      position: { x: 200, y: 100 },
+      position: { x: 200, y: 200 },
       data: {
         title: "Beep",
         subtitle: "Prompt Beep.wav",
@@ -243,7 +243,7 @@ export default function QuestionFlow() {
     {
       id: "4",
       type: "custom",
-      position: { x: 400, y: 50 },
+      position: { x: 400, y: 100 },
       data: {
         title: "Question 1",
         subtitle: "Custom",
@@ -254,7 +254,7 @@ export default function QuestionFlow() {
     {
       id: "5",
       type: "custom",
-      position: { x: 400, y: 250 },
+      position: { x: 450, y: 300 },
       data: {
         title: "Question 2",
         subtitle: "Custom",
@@ -265,7 +265,7 @@ export default function QuestionFlow() {
     {
       id: "6",
       type: "custom",
-      position: { x: 500, y: 450 },
+      position: { x: 600, y: 500 },
       data: {
         title: "Error Handling",
         subtitle: "If User Press Invalid Input",
@@ -276,7 +276,7 @@ export default function QuestionFlow() {
     {
       id: "7",
       type: "custom",
-      position: { x: 600, y: 50 },
+      position: { x: 650, y: 100 },
       data: {
         title: "Question 3",
         subtitle: "Custom",
@@ -287,7 +287,7 @@ export default function QuestionFlow() {
     {
       id: "8",
       type: "custom",
-      position: { x: 600, y: 250 },
+      position: { x: 700, y: 300 },
       data: {
         title: "Questions 4",
         subtitle: "Custom",
@@ -298,7 +298,7 @@ export default function QuestionFlow() {
     {
       id: "9",
       type: "custom",
-      position: { x: 800, y: 100 },
+      position: { x: 900, y: 200 },
       data: {
         title: "Question 5",
         subtitle: "Custom",
@@ -309,7 +309,7 @@ export default function QuestionFlow() {
     {
       id: "10",
       type: "custom",
-      position: { x: 1000, y: 100 },
+      position: { x: 1100, y: 350 },
       data: {
         title: "Store",
         subtitle: "This Response will be store to S3",
@@ -320,7 +320,7 @@ export default function QuestionFlow() {
     {
       id: "11",
       type: "custom",
-      position: { x: 1200, y: 100 },
+      position: { x: 1300, y: 200 },
       data: {
         title: "Disconnect",
         subtitle: "Termination Event",
