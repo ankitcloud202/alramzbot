@@ -13,32 +13,17 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import HeroImage from '@/public/hero-image.png'
-import useSWR from 'swr'
-import { generateClient } from 'aws-amplify/data';
-import { type Schema } from '@/amplify/data/resource';
-import { Amplify } from 'aws-amplify';
-import outputs from '../amplify_outputs.json';
 import axios from "axios"
 import { FileUploader } from '@aws-amplify/ui-react-storage';
 import '@aws-amplify/ui-react/styles.css';
 import toast from "react-hot-toast"
 import { SurveyResponses } from "@/components/SurveyResponses"
+import { SurveyResponsesChart } from "@/components/SurveyResponseChart"
+import { SurveyResponsesLineChart } from "@/components/SurveyResponseChart2"
 
-Amplify.configure(outputs);
-
-const client = generateClient<Schema>();
-
-const fetcher = async ()=>{
-  try{
-    const res = await client.models.Todo.list();
-    return res.data;
-  }catch(e){
-    console.error("Error fetching data:", e)
-  }
-}
 
 export default function Home() {
-  const {data, error} = useSWR(`/api/Calls`, fetcher)
+  
   const [phoneInputs, setPhoneInputs] = useState([{ id: 1, countryCode: "+966", phoneNumber: "" }])
 
   const addPhoneInput = () => {
@@ -91,11 +76,7 @@ export default function Home() {
     // Handle form submission logic here
   }
 
-  if(error) return <div>Error fetching data</div>
 
-  if(data){
-    console.log("Data:", data);
-  }
   return (
     <>
 
@@ -347,17 +328,31 @@ export default function Home() {
         </div>
       </section> 
 
-      {/* SURVEY RESPONSES Section */}
-      <section id="faq" className="py-4 md:py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+
+      <section id="faq" className="py-4 md:py-10 bg-gray-50">
+        <div className="container lg:px-28 px-10 mx-auto">
+          <div className="text-start max-w-3xl mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Post call analysis</h2>
+            <p className="text-lg text-gray-600">Responses of survey calls.</p> 
+          </div>
+          <div className="grid md:grid-cols-2 gap-10">
+          <SurveyResponsesChart/>
+          <SurveyResponsesLineChart/>
+          </div>
+
+        </div>
+      </section>  
+
+            {/* SURVEY RESPONSES Section */}
+      <section id="faq" className="py-4 md:py-10 bg-gray-50">
+        <div className="container lg:px-28 px-10 mx-auto">
+          <div className="text-start max-w-3xl mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Survey responses</h2>
             <p className="text-lg text-gray-600">Responses of survey calls.</p> 
           </div>
           <SurveyResponses/>
-          
         </div>
-      </section>    
+      </section>  
 
     </>
   )

@@ -7,6 +7,8 @@ const schema = a.schema({
       details: a.json(),
       sentimentScore: a.integer(),
       sourceFile: a.string(),
+      customer_phone: a.string(),
+      timestamp: a.integer(),
       Attributes: a.customType({
         "Question1": a.string(),
         "Question2": a.string(),
