@@ -20,7 +20,10 @@ const client = generateClient<Schema>();
 export const fetcher = async ()=>{
   try{
     const res = await client.models.Todo.list();
-    return res.data;
+    const sortedData = res.data.sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+    return sortedData;
   }catch(e){
     console.error("Error fetching data:", e)
   }
@@ -96,9 +99,6 @@ export function SurveyResponses() {
     const [refreshing, setRefreshing] = useState(false);
   if(error) return <div>Error fetching data</div>
 
-  if(data){
-    console.log("Data:", data);
-  }
   // Calculate average rating for each response
   const getAverageRating = (attributes: Record<string, string | null>) => {
     const values = Object.values(attributes)
@@ -118,7 +118,7 @@ export function SurveyResponses() {
 
   const handleRefresh = async () => {
     setRefreshing(true);
-    await mutate('/api/calls'); // Trigger a revalidation of the data
+    await mutate('/api/Calls'); // Trigger a revalidation of the data
 
     setTimeout(()=>{
       setRefreshing(false);
