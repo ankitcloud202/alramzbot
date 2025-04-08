@@ -7,6 +7,13 @@ const schema = a.schema({
       details: a.json(),
       sentimentScore: a.integer(),
       sourceFile: a.string(),
+      Attributes: a.customType({
+        "Question1": a.string(),
+        "Question2": a.string(),
+        "Question3": a.string(),
+        "Question4": a.string(),
+        "Question5": a.string(),
+      })
     })
     .authorization((allow) => [allow.guest()]),
 });
