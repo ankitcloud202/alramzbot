@@ -17,7 +17,7 @@ const schema = a.schema({
         "Question5": a.string(),
       })
     })
-    .authorization((allow) => [allow.guest()]),
+    .authorization((allow) => [allow.guest(), allow.authenticated()]),
 
       
   chat: a.conversation({

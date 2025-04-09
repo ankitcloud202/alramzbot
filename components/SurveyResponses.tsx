@@ -19,7 +19,7 @@ const client = generateClient<Schema>();
 
 export const fetcher = async ()=>{
   try{
-    const res = await client.models.Todo.list();
+    const res = await client.models.Todo.list({authMode: 'userPool'});
     const sortedData = res.data.sort((a, b) => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
