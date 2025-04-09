@@ -90,10 +90,10 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="inline-block px-3 py-1 rounded-full bg-gray-100 border text-sm font-medium">
-                Introducing Al Ramzbot
+                Introducing Al Ramz Bot
               </div>
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-              Al RamzBot – AI Voice Assistant
+              Al Ramz Bot – AI Voice Assistant
               </h1>
               <p className="text-lg md:text-lg text-gray-600 max-w-lg">
               An intelligent AI voice bot designed to communicate effortlessly in Arabic, conduct automated voice surveys, and instantly capture responses with real-time sentiment analysis.
@@ -117,7 +117,7 @@ export default function Home() {
               <div className="relative bg-white p-2 rounded-xl shadow-lg">
                 <Image
                   src={HeroImage.src}
-                  alt="Al Ramzbot X Cloud202 Dashboard"
+                  alt="Al Ramzbot Dashboard"
                   width={500}
                   height={500}
                   className="rounded-lg w-full"

@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <Link href="/" className="text-xl font-bold">
-              Al Ramzbot X Cloud202
+              Al Ramz Bot
             </Link>
           </div>
 
@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} Al Ramzbot X Cloud202. All rights reserved.
+          © {new Date().getFullYear()} Al Ramz Bot. All rights reserved.
         </div>
       </div>
     </footer>
