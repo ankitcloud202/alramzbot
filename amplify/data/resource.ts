@@ -5,7 +5,7 @@ const schema = a.schema({
     .model({
       content: a.string(),
       details: a.json(),
-      sentimentScore: a.integer(),
+      sentimentScore: a.float(),
       sourceFile: a.string(),
       customer_phone: a.string(),
       timestamp: a.integer(),

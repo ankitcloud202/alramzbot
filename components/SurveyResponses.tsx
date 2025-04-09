@@ -99,6 +99,10 @@ export function SurveyResponses() {
     const [refreshing, setRefreshing] = useState(false);
   if(error) return <div>Error fetching data</div>
 
+  if(data){
+    console.log("TABLE DATA", data)
+  }
+
   // Calculate average rating for each response
   const getAverageRating = (attributes: Record<string, string | null>) => {
     const values = Object.values(attributes)
