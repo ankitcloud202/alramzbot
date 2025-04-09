@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FileUploader } from "@aws-amplify/ui-react-storage"
+import GenerationalChatBot from "./GenerationalChatBot"
 
 
 interface Option {
@@ -96,7 +97,7 @@ export default function QuestionForm() {
 
   return (
 
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className="grid gap-4 md:grid-cols-3">
         <Card className="border-0 shadow-lg">
           <CardHeader>
             <CardDescription>Fill out the form below.</CardDescription>
@@ -169,6 +170,15 @@ export default function QuestionForm() {
              maxFileCount={1}
              isResumable
             />
+          </CardContent>
+        </Card>
+
+        <Card className="border-0 shadow-lg">
+          <CardHeader>
+            <CardDescription>Use AI to generate survey.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <GenerationalChatBot/>
           </CardContent>
         </Card>
     </div>

@@ -23,9 +23,15 @@ import { SurveyResponsesLineChart } from "@/components/SurveyResponseChart2"
 import QuestionForm from "@/components/DefineSurvey"
 import QuestionFlow from "@/components/question-flow"
 
+// import { Authenticator } from "@aws-amplify/ui-react"
+import { Amplify } from 'aws-amplify';
+import outputs from '@/amplify_outputs.json';
+import '@aws-amplify/ui-react/styles.css';
+
+Amplify.configure(outputs);
+
 
 export default function Home() {
-  
   const [phoneInputs, setPhoneInputs] = useState([{ id: 1, countryCode: "+966", phoneNumber: "" }])
 
   const addPhoneInput = () => {
@@ -81,7 +87,6 @@ export default function Home() {
 
   return (
     <>
-
       {/* Hero Section */}
       <section className="relative mx-20 overflow-hidden from-gray-50 to-gray-100">
         <div className="absolute inset-0 bg-gradient-to-br  z-0"></div>
@@ -128,16 +133,14 @@ export default function Home() {
         </div>
       </section>
 
-
-
-
       {/* Define Survey flow */}
       <section id="start" className="py-12 bg-white" >
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12 items-center w-full px-10 lg:px-20" >
+          <div className="grid gap-12 items-center w-full px-10 lg:px-20" >
             <div className="col-span-1">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Define Survey flow</h2>
-              <div className="space-y-4">
+              <p className="text-lg text-gray-600">Create, upload, or generate your survey using AI.</p>
+              {/* <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
                     <Check className="h-5 w-5 text-purple-600" />
@@ -150,7 +153,7 @@ export default function Home() {
                   </div>
                   <p className="font-medium">Or create your survey</p>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="col-span-2">
             <QuestionForm/>

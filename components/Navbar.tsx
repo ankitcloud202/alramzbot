@@ -5,10 +5,17 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { useAuthenticator } from "@aws-amplify/ui-react"
+import { signOut } from "aws-amplify/auth"
+import toast from "react-hot-toast"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const amplifyAuth = useAuthenticator((context) => [context.error]);
+  const isAuthenticated = amplifyAuth.authStatus === "authenticated";
+
+  console.log("Authenitcated",isAuthenticated)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +29,17 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  async function handleLogout() {
+    try {
+      const logout = await signOut();
+      console.log("Logout", logout)
+      // Additional logic after successful logout
+    } catch (error) {
+      console.error("Error signing out:", error);
+      toast.error("Error signing out. Please try again.")
+    }
+  }
 
   return (
     <nav
@@ -47,7 +65,14 @@ export default function Navbar() {
               <Link href="#contact" className="px-3 py-2 rounded-md text-sm hover:bg-gray-100">
                 Contact
               </Link>
-              <Button size="sm">Get Started</Button>
+              {isAuthenticated ? 
+                <Button size="sm" onClick={handleLogout}>
+                  Logout
+                </Button>:
+                <Button size="sm"  >
+                  Get Started
+                </Button>
+              }
             </div>
           </div>
 
@@ -96,9 +121,14 @@ export default function Navbar() {
               >
                 Contact
               </Link>
-              <Button className="w-full" size="sm" onClick={() => setIsMobileMenuOpen(false)}>
-                Get Started
-              </Button>
+              {isAuthenticated ? 
+                (<Button className="w-full" size="sm" onClick={() => setIsMobileMenuOpen(false)}>
+                  Logout
+                </Button> ):
+                (<Button className="w-full" size="sm" onClick={() => setIsMobileMenuOpen(false)}>
+                  Get Started
+                </Button>)
+              }
             </div>
           </div>
         )}
