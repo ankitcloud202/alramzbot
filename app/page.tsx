@@ -235,7 +235,7 @@ export default function Home() {
       </section> 
 
             {/* Contact Section */}
-            <section id="start" className="py-10 bg-white" >
+            <section id="start" className="py-14 bg-gray-50" >
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-12 items-center w-full px-10 lg:px-20" >
             <div>
