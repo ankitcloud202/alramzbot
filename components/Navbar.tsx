@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useAuthenticator } from "@aws-amplify/ui-react"
 import { signOut } from "aws-amplify/auth"
+import logo from '@/public/ChatGPT Image May 19, 2025, 12_59_10 PM.png'
 import toast from "react-hot-toast"
+import Image from "next/image"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -49,10 +51,10 @@ export default function Navbar() {
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-18">
           <div className="flex-shrink-0">
             <Link href="/" className="text-xl">
-              Al Ramz Bot
+              <Image src={logo.src} height={70} width={70} alt="AI VOICE BOT"/>
             </Link>
           </div>
 

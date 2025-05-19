@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const metadata: Metadata = {
-  title: "Al Ramz Bot",
+  title: "AI Voice Bot",
   description: "Developed by Cloud202",
 };
 

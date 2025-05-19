@@ -94,11 +94,8 @@ export default function Home() {
         <div className="container relative z-10 mx-auto px-4 py-12 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="inline-block px-3 py-1 rounded-full bg-gray-100 border text-sm font-medium">
-                Introducing Al Ramz Bot
-              </div>
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-              Al Ramz Bot – AI Voice Assistant
+              AI Voice Bot
               </h1>
               <p className="text-lg md:text-lg text-gray-600 max-w-lg">
               An intelligent AI voice bot designed to communicate effortlessly in Arabic, conduct automated voice surveys, and instantly capture responses with real-time sentiment analysis.
@@ -122,7 +119,7 @@ export default function Home() {
               <div className="relative bg-white p-2 rounded-xl shadow-lg">
                 <Image
                   src={HeroImage.src}
-                  alt="Al Ramzbot Dashboard"
+                  alt="AI Voice Dashboard"
                   width={500}
                   height={500}
                   className="rounded-lg w-full"
@@ -173,67 +170,6 @@ export default function Home() {
           <div className="mb-16">
             <QuestionFlow />
           </div>
-
-          {/* <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>How does Al Ramzbot X Cloud202 work?</AccordionTrigger>
-                <AccordionContent>
-                  Al Ramzbot X Cloud202 is a comprehensive cloud platform that combines advanced infrastructure, security
-                  protocols, and user-friendly interfaces. It works by providing a distributed network of servers that
-                  handle computing, storage, and networking resources, which you can access and manage through our
-                  intuitive dashboard.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-2">
-                <AccordionTrigger>What features are included in the basic package?</AccordionTrigger>
-                <AccordionContent>
-                  The Basic package includes 5TB of storage, support for up to 10 users, basic analytics capabilities,
-                  and 24/7 customer support. You&apos;ll also get access to our core cloud infrastructure, security features,
-                  and collaboration tools.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Is there a free trial available?</AccordionTrigger>
-                <AccordionContent>
-                  Yes, we offer a 14-day free trial for all new customers. This gives you full access to our Pro plan
-                  features so you can thoroughly test the platform before making a commitment. No credit card is
-                  required to start your trial.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-4">
-                <AccordionTrigger>How secure is the cloud storage?</AccordionTrigger>
-                <AccordionContent>
-                  Al Ramzbot X Cloud202 employs military-grade encryption (AES-256) for all data, both in transit and at
-                  rest. We maintain compliance with major security standards including SOC 2, ISO 27001, and GDPR. Our
-                  infrastructure includes multiple redundancies, regular security audits, and advanced threat detection
-                  systems.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-5">
-                <AccordionTrigger>Can I access my data from multiple devices?</AccordionTrigger>
-                <AccordionContent>
-                  Yes, Al Ramzbot X Cloud202 is designed for multi-device access. You can securely access your data from
-                  any device with an internet connection, including desktops, laptops, tablets, and smartphones. Our
-                  responsive web interface and dedicated mobile apps ensure a consistent experience across all your
-                  devices.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-6">
-                <AccordionTrigger>How does billing work?</AccordionTrigger>
-                <AccordionContent>
-                  We offer both monthly and annual billing options. Annual billing provides a 20% discount compared to
-                  monthly billing. You can upgrade, downgrade, or cancel your plan at any time. For enterprise
-                  customers, we also offer customized billing arrangements to suit your specific needs.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div> */}
         </div>
       </section> 
 

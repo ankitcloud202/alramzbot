@@ -33,7 +33,7 @@ export default function GenerationalChatBot() {
             },
             ai: {
               avatar: <Avatar />,
-              username: "Al Ramz Bot"
+              username: "AI Voice Bot"
             }
           }}
         />
