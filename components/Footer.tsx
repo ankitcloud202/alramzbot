@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} Cloud202. All rights reserved.
+          © {new Date().getFullYear()} {process.env.NEXT_PUBLIC_COMPANY_NAME || "Cloud202"}. All rights reserved.
         </div>
       </div>
     </footer>
